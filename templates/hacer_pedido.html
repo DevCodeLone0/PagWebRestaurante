@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Hacer Pedido{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Realizar Pedido</h1>
+    <p>Selecciona un cliente y un plato para hacer el pedido</p>
+</section>
+
+<section class="form-section">
+    <form action="/ordenar" method="POST" class="form">
+        <div class="form-group">
+            <label for="cliente_id">Cliente:</label>
+            <select id="cliente_id" name="cliente_id" required>
+                <option value="">Seleccionar cliente</option>
+                {% for cliente in clientes %}
+                <option value="{{ cliente['id'] }}">{{ cliente['nombre'] }} - {{ cliente['email'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="plato_id">Plato:</label>
+            <select id="plato_id" name="plato_id" required>
+                <option value="">Seleccionar plato</option>
+                <optgroup label="Entradas">
+                    {% for plato in entradas %}
+                    <option value="{{ plato['id'] }}">{{ plato['nombre'] }} - ${{ plato['precio'] }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Platos Fuertes">
+                    {% for plato in platos_fuertes %}
+                    <option value="{{ plato['id'] }}">{{ plato['nombre'] }} - ${{ plato['precio'] }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Postres">
+                    {% for plato in postres %}
+                    <option value="{{ plato['id'] }}">{{ plato['nombre'] }} - ${{ plato['precio'] }}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+        </div>
+        
+        <button type="submit" class="btn-submit">Realizar Pedido</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Ver Clientes{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Clientes Registrados</h1>
+    <p>Lista de todos los clientes</p>
+</section>
+
+<section class="orders-section">
+    {% if clientes %}
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente['id'] }}</td>
+                <td>{{ cliente['nombre'] }}</td>
+                <td>{{ cliente['telefono'] }}</td>
+                <td>{{ cliente['direccion'] or '-' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-orders">No hay clientes registrados.</p>
+    {% endif %}
+</section>
+
+<section class="links-section">
+    <a href="/clientes" class="btn-link">Registrar Nuevo Cliente</a>
+</section>
+{% endblock %}

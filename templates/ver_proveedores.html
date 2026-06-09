@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Ver Proveedores{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Proveedores Registrados</h1>
+    <p>Lista de todos los proveedores</p>
+</section>
+
+<section class="orders-section">
+    {% if proveedores %}
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Empresa</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Producto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor['id'] }}</td>
+                <td>{{ proveedor['nombre'] }}</td>
+                <td>{{ proveedor['empresa'] }}</td>
+                <td>{{ proveedor['telefono'] }}</td>
+                <td>{{ proveedor['email'] }}</td>
+                <td>{{ proveedor['producto'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-orders">No hay proveedores registrados.</p>
+    {% endif %}
+</section>
+
+<section class="links-section">
+    <a href="/proveedores" class="btn-link">Registrar Nuevo Proveedor</a>
+</section>
+{% endblock %}

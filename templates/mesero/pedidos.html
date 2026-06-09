@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Pedidos - Mesero{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Gestión de Pedidos</h1>
+    <p>Administra todos los pedidos del restaurante</p>
+</section>
+
+<section class="orders-section">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    {% if pedidos %}
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Plato</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th>Hora del Pedido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in pedidos %}
+            <tr class="pedido-row">
+                <td>{{ pedido['id'] }}</td>
+                <td>{{ pedido['cliente'] }}</td>
+                <td>{{ pedido['plato'] }}</td>
+                <td>{{ pedido['cantidad'] }}</td>
+                <td><span class="badge badge-{{ pedido['estado'] }}">{{ pedido['estado'] }}</span></td>
+                <td>{{ pedido['fecha'] }}</td>
+                <td>
+                    {% if pedido['estado'] == 'listo' %}
+                        <a href="/mesero/pedidos/{{ pedido['id'] }}/deliver" class="btn-action btn-deliver">Marcar Entregado</a>
+                    {% endif %}
+                    {% if pedido['estado'] != 'entregado' and pedido['estado'] != 'cancelado' %}
+                        <a href="/mesero/pedidos/{{ pedido['id'] }}/cancel" class="btn-action btn-cancel">Cancelar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-orders">No hay pedidos registrados.</p>
+    {% endif %}
+</section>
+
+<section class="links-section">
+    <a href="/hacer_pedido" class="btn-primary">Nuevo Pedido</a>
+</section>
+{% endblock %}

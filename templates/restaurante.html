@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Restaurante{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Nuestra Carta</h1>
+    <p>Descubre nuestros platos elaborados con los mejores ingredientes</p>
+</section>
+
+<section class="menu-section">
+    <h2>Para Empezar (Entradas)</h2>
+    {% if entradas %}
+    <div class="cards-grid">
+        {% for plato in entradas %}
+        <div class="card">
+            <h3>{{ plato['nombre'] }}</h3>
+            <p class="description">{{ plato['descripcion'] }}</p>
+            <p class="price">${{ plato['precio'] }}</p>
+            <button class="btn-order" onclick="toggleForm('plato{{ plato['id'] }}')">Ordenar</button>
+            <form id="plato{{ plato['id'] }}" class="order-form" action="/ordenar" method="POST">
+                <input type="hidden" name="plato_id" value="{{ plato['id'] }}">
+                <select name="cliente_id" required>
+                    <option value="">Seleccionar cliente</option>
+                    {% for cliente in clientes %}
+                    <option value="{{ cliente['id'] }}">{{ cliente['nombre'] }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="cantidad" placeholder="Cantidad" min="1" required>
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No hay entradas registradas. <a href="/platos">Agregar platos</a></p>
+    {% endif %}
+</section>
+
+<section class="menu-section">
+    <h2>Platos Fuertes (Fondos)</h2>
+    {% if platos_fuertes %}
+    <div class="cards-grid">
+        {% for plato in platos_fuertes %}
+        <div class="card">
+            <h3>{{ plato['nombre'] }}</h3>
+            <p class="description">{{ plato['descripcion'] }}</p>
+            <p class="price">${{ plato['precio'] }}</p>
+            <button class="btn-order" onclick="toggleForm('plato{{ plato['id'] }}')">Ordenar</button>
+            <form id="plato{{ plato['id'] }}" class="order-form" action="/ordenar" method="POST">
+                <input type="hidden" name="plato_id" value="{{ plato['id'] }}">
+                <select name="cliente_id" required>
+                    <option value="">Seleccionar cliente</option>
+                    {% for cliente in clientes %}
+                    <option value="{{ cliente['id'] }}">{{ cliente['nombre'] }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="cantidad" placeholder="Cantidad" min="1" required>
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No hay platos fuertes registrados. <a href="/platos">Agregar platos</a></p>
+    {% endif %}
+</section>
+
+<section class="menu-section">
+    <h2>El Final Dulce (Postres)</h2>
+    {% if postres %}
+    <div class="cards-grid">
+        {% for plato in postres %}
+        <div class="card">
+            <h3>{{ plato['nombre'] }}</h3>
+            <p class="description">{{ plato['descripcion'] }}</p>
+            <p class="price">${{ plato['precio'] }}</p>
+            <button class="btn-order" onclick="toggleForm('plato{{ plato['id'] }}')">Ordenar</button>
+            <form id="plato{{ plato['id'] }}" class="order-form" action="/ordenar" method="POST">
+                <input type="hidden" name="plato_id" value="{{ plato['id'] }}">
+                <select name="cliente_id" required>
+                    <option value="">Seleccionar cliente</option>
+                    {% for cliente in clientes %}
+                    <option value="{{ cliente['id'] }}">{{ cliente['nombre'] }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="cantidad" placeholder="Cantidad" min="1" required>
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No hay postres registrados. <a href="/platos">Agregar platos</a></p>
+    {% endif %}
+</section>
+
+<script>
+function toggleForm(id) {
+    var form = document.getElementById(id);
+    if (form.classList.contains('active')) {
+        form.classList.remove('active');
+    } else {
+        form.classList.add('active');
+    }
+}
+</script>
+{% endblock %}

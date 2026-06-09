@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Logs de Auditoría{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Logs de Auditoría</h1>
+    <p>Historial de acciones del sistema</p>
+</section>
+
+<section class="admin-section">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Acción</th>
+                <th>Detalles</th>
+                <th>IP</th>
+                <th>Fecha/Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log['id'] }}</td>
+                <td>{{ log['user_email'] or 'Sistema' }}</td>
+                <td><span class="badge badge-action">{{ log['action'] }}</span></td>
+                <td>{{ log['details'] or '-' }}</td>
+                <td>{{ log['ip_address'] or '-' }}</td>
+                <td>{{ log['timestamp'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

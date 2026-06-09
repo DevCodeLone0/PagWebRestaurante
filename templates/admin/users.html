@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de Usuarios{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Gestión de Usuarios</h1>
+    <p>Administra las cuentas del sistema</p>
+</section>
+
+<section class="admin-section">
+    <div class="admin-header">
+        <a href="/admin/users/create" class="btn-primary">Crear Nuevo Usuario</a>
+        <a href="/admin/audit-log" class="btn-secondary">Ver Logs de Auditoría</a>
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Último Login</th>
+                <th>Intentos Fallidos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user['id'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td><span class="badge badge-{{ user['rol'] }}">{{ user['rol'] }}</span></td>
+                <td>
+                    {% if user['is_active'] %}
+                        <span class="status active">Activo</span>
+                    {% else %}
+                        <span class="status inactive">Inactivo</span>
+                    {% endif %}
+                </td>
+                <td>{{ user['last_login'] or 'Nunca' }}</td>
+                <td>{{ user['failed_attempts'] }}</td>
+                <td>
+                    <form action="/admin/users/{{ user['id'] }}/toggle-active" method="POST" style="display:inline;">
+                        <button type="submit" class="btn-sm {% if user['is_active'] %}btn-danger{% else %}btn-success{% endif %}">
+                            {% if user['is_active'] %}Desactivar{% else %}Activar{% endif %}
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

@@ -1,0 +1,715 @@
+:root {
+    --black: #0a0a0a;
+    --gold: #d4af37;
+    --gold-light: #f5e6a3;
+    --white: #ffffff;
+    --gray: #cccccc;
+    --gray-dark: #333333;
+    --green: #2ecc71;
+    --green-dark: #27ae60;
+    --red: #e74c3c;
+    --red-dark: #c0392b;
+    --blue: #3498db;
+    --orange: #e67e22;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--black);
+    border-bottom: 1px solid var(--gold);
+    padding: 1rem 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--gold-light);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.user-info {
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+.nav-link-sm {
+    color: var(--gray);
+    font-size: 0.8rem;
+}
+
+.nav-logout {
+    color: var(--red);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+main {
+    min-height: calc(100vh - 120px);
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--gray-dark);
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    color: var(--gray);
+    font-size: 1.2rem;
+}
+
+.menu-section {
+    margin-bottom: 3rem;
+}
+
+.menu-section h2 {
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gray-dark);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--gray-dark);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--gold);
+}
+
+.card h3 {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.card .description {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.btn-order {
+    background-color: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-order:hover {
+    background-color: var(--gold-light);
+}
+
+.order-form {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-dark);
+}
+
+.order-form.active {
+    display: block;
+}
+
+.order-form input,
+.order-form select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--black);
+    border: 1px solid var(--gray-dark);
+    color: var(--white);
+    border-radius: 4px;
+}
+
+.order-form input:focus,
+.order-form select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.btn-submit {
+    background-color: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--gold-light);
+}
+
+.orders-table,
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--gray-dark);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.orders-table th,
+.orders-table td,
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.orders-table th,
+.admin-table th {
+    background-color: var(--gold);
+    color: var(--black);
+    font-weight: bold;
+}
+
+.orders-table tr,
+.admin-table tr {
+    border-bottom: 1px solid var(--gray-dark);
+}
+
+.orders-table tr:last-child,
+.admin-table tr:last-child {
+    border-bottom: none;
+}
+
+.no-orders {
+    text-align: center;
+    color: var(--gray);
+    padding: 2rem;
+}
+
+.suppliers-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.supplier-card {
+    background-color: var(--gray-dark);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.supplier-card:hover {
+    border-color: var(--gold);
+}
+
+.supplier-card h3 {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.supplier-detail {
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.supplier-contact {
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--gray-dark);
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .cards-grid,
+    .suppliers-section {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-user {
+        margin-left: 0;
+    }
+
+    .admin-table {
+        font-size: 0.8rem;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 0.5rem;
+    }
+}
+
+.form-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form {
+    background-color: var(--gray-dark);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--black);
+    border: 1px solid var(--gray-dark);
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.form-hint {
+    display: block;
+    color: var(--gray);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.form .btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+.links-section {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn-link {
+    display: inline-block;
+    background-color: var(--gold);
+    color: var(--black);
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-link:hover {
+    background-color: var(--gold-light);
+    color: var(--black);
+}
+
+.card .price {
+    color: var(--gold);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.auth-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+}
+
+.auth-card {
+    background-color: var(--gray-dark);
+    border-radius: 12px;
+    padding: 2.5rem;
+    border: 1px solid var(--gray-dark);
+}
+
+.auth-title {
+    text-align: center;
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.auth-form .form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.auth-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--black);
+    border: 1px solid var(--gray-dark);
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.auth-form .form-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.auth-form .form-hint {
+    display: block;
+    color: var(--gray);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.btn-auth:hover {
+    background-color: var(--gold-light);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.auth-footer a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    color: var(--gold-light);
+}
+
+.flash-messages {
+    margin-bottom: 1.5rem;
+}
+
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.flash-success {
+    background-color: var(--green-dark);
+    color: var(--white);
+}
+
+.flash-error {
+    background-color: var(--red-dark);
+    color: var(--white);
+}
+
+.flash-warning {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.flash-info {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-admin {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.badge-chef {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.badge-mesero {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.badge-cliente {
+    background-color: var(--green-dark);
+    color: var(--white);
+}
+
+.badge-pendiente {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.badge-en_preparacion {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.badge-listo {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+.badge-entregado {
+    background-color: var(--gray);
+    color: var(--black);
+}
+
+.badge-cancelado {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.badge-action {
+    background-color: var(--gray-dark);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+}
+
+.status {
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.status.active {
+    color: var(--green);
+}
+
+.status.inactive {
+    color: var(--red);
+}
+
+.admin-section {
+    margin-top: 1rem;
+}
+
+.admin-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--gold);
+    color: var(--black);
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--gold-light);
+    color: var(--black);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--gold);
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--gold);
+    color: var(--black);
+}
+
+.btn-sm {
+    padding: 0.35rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.btn-danger {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background-color: var(--red-dark);
+}
+
+.btn-success {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+.btn-success:hover {
+    background-color: var(--green-dark);
+}
+
+.btn-action {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.btn-start {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.btn-start:hover {
+    background-color: #2980b9;
+}
+
+.btn-complete {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+.btn-complete:hover {
+    background-color: var(--green-dark);
+    color: var(--white);
+}
+
+.btn-deliver {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+.btn-deliver:hover {
+    background-color: var(--green-dark);
+    color: var(--white);
+}
+
+.btn-cancel {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.btn-cancel:hover {
+    background-color: var(--red-dark);
+}

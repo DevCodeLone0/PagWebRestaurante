@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Platos{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Registrar Plato</h1>
+    <p>Agrega un nuevo plato al menú</p>
+</section>
+
+<section class="form-section">
+    <form action="/registrar_plato" method="POST" class="form">
+        <div class="form-group">
+            <label for="nombre">Nombre del plato:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="">Seleccionar categoría</option>
+                <option value="entradas">Entradas</option>
+                <option value="platos_fuertes">Platos Fuertes</option>
+                <option value="postres">Postres</option>
+            </select>
+        </div>
+        <button type="submit" class="btn-submit">Registrar Plato</button>
+    </form>
+</section>
+{% endblock %}
