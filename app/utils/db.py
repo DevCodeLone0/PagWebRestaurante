@@ -6,6 +6,13 @@ def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(current_app.config['DB_PATH'])
         g.db.row_factory = sqlite3.Row
+    else:
+        # Verify connection is still open
+        try:
+            g.db.execute('SELECT 1')
+        except sqlite3.ProgrammingError:
+            g.db = sqlite3.connect(current_app.config['DB_PATH'])
+            g.db.row_factory = sqlite3.Row
     return g.db
 
 
@@ -92,7 +99,6 @@ def init_db():
 
     db.commit()
 
-    # Create default admin if not exists
     from werkzeug.security import generate_password_hash
     from datetime import datetime
 

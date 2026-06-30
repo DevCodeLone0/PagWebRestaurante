@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from tests.config import BASE_URL, CHEF_EMAIL, CHEF_PASSWORD
 import time
 
@@ -18,7 +20,7 @@ def main():
     time.sleep(2)
     driver.find_element(By.ID, "email").send_keys(CHEF_EMAIL)
     driver.find_element(By.ID, "password").send_keys(CHEF_PASSWORD)
-    driver.find_element(By.CSS_SELECTOR, "button.btn-auth").click()
+    driver.execute_script("document.querySelector('form').submit()")
     time.sleep(2)
 
     #Ir a pedidos del chef
@@ -51,3 +53,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

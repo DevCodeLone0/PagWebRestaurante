@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from tests.config import BASE_URL
 import time
 
@@ -34,3 +36,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
